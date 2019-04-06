@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import MyRouter from './router';
 import 'antd/dist/antd.min.css';
 
 import './style/index.less';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<MyRouter />, document.getElementById('app'));

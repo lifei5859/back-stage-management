@@ -1,22 +1,34 @@
 const navConf = [
     {
         name: '首页',
-        key: '/admin/home',
+        key: '/home',
         type: 'desktop'
     },
     {
         name: '公告',
-        key: '/admin/notice',
+        key: '/notice',
         type: 'notification'
     },
     {
         name: '百宝箱',
-        key: '/admin/tools',
-        type: 'appstore'
+        key: '/tools',
+        type: 'appstore',
+        children: [
+            {
+                name: '考勤管理',
+                key: '/tools/checkingIn',
+                type: 'book'
+            },
+            {
+                name: '员工列表',
+                key: '/tools/employeeList',
+                type: 'file-text'
+            }
+        ]
     },
     {
         name: '个人中心',
-        key: '/admin/personal',
+        key: '/personal',
         type: 'user'
     }
 ]

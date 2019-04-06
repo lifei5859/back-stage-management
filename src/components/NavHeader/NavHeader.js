@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Menu, Icon } from 'antd';
-// const SubMenu = Menu.SubMenu;
+import { NavLink } from "react-router-dom";
+const SubMenu = Menu.SubMenu;
 // const MenuItemGroup = Menu.ItemGroup;
 
 import '../../style/base.less';
@@ -15,19 +16,38 @@ class NavHeader extends Component {
         }
     }
 
+    componentWillMount() {
+        const navTree = this.renderNav(NavConf);
+
+        this.setState({
+            navTree
+        })
+    }
+    renderNav = (data) => {
+        return data.map((item)=>{
+            if (item.children){
+                return (
+                    <SubMenu title={<span> <Icon type={ item.type } />{ item.name } </span>} key={item.key}>
+                        { this.renderNav(item.children)}
+                    </SubMenu>
+                )
+            }
+            return <Menu.Item title={item.title} key={item.key}>
+                        <NavLink to={item.key}> <Icon type={ item.type } />{ item.name } </NavLink>
+                   </Menu.Item> 
+        })
+    }
     // getInitialState = () => {
     //     return {
     //         current: 'mail',
     //     };
     // }
-    handleClick = (e) => {
-        console.log('click ', e);
-        this.setState({
-            current: e.key,
-        });
-    }
+    // handleClick = (e) => {
+    //     this.setState({
+    //         current: e.key,
+    //     });
+    // }
     render() {
-        console.log(NavConf);
         return (
             <div>
                 <Menu onClick={this.handleClick}
@@ -36,11 +56,12 @@ class NavHeader extends Component {
                       className="header-nav"
                 >
                     {
-                        NavConf.map(item => (
-                            <Menu.Item key={ item.key } className="margin-left">
-                                <Icon type={ item.type } />{ item.name }
-                            </Menu.Item>
-                        ))
+                        // NavConf.map(item => (
+                        //     <Menu.Item key={ item.key } className="margin-left">
+                        //         <Icon type={ item.type } />{ item.name }
+                        //     </Menu.Item>
+                        // ))
+                        this.state.navTree
                     }
                 </Menu>
             </div>
