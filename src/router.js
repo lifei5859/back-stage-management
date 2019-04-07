@@ -26,11 +26,11 @@ class MyRouter extends Component {
                              <Route path="/personal" component={Personal} />
                              <Route path="/tools/checkingIn" component={CheckingIn} />
                              <Route path="/tools/employeeList" component={EmployeeList} />
-                             <Redirect to="/" />
+                             <Redirect to="/home" />
                          </Switch>
                       </Main>
                   )} />
-              </Switch>    
+              </Switch>
           </App>
       </Router>
     )

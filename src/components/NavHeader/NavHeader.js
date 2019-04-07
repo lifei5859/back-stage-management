@@ -10,19 +10,19 @@ import NavConf from '../../config/navConfig';
 
 class NavHeader extends Component {
     constructor (props) {
-        super(props);
-        this.state = {
-            current:''
-        }
+        super(props)
     }
 
     componentWillMount() {
-        const navTree = this.renderNav(NavConf);
-
+        const navTree = this.renderNav(NavConf)
+        const current = window.location.href.split('#')[1]
         this.setState({
-            navTree
+            navTree,
+            current
         })
     }
+
+
     renderNav = (data) => {
         return data.map((item)=>{
             if (item.children){
@@ -34,7 +34,7 @@ class NavHeader extends Component {
             }
             return <Menu.Item title={item.title} key={item.key}>
                         <NavLink to={item.key}> <Icon type={ item.type } />{ item.name } </NavLink>
-                   </Menu.Item> 
+                   </Menu.Item>
         })
     }
     // getInitialState = () => {
@@ -42,11 +42,11 @@ class NavHeader extends Component {
     //         current: 'mail',
     //     };
     // }
-    // handleClick = (e) => {
-    //     this.setState({
-    //         current: e.key,
-    //     });
-    // }
+    handleClick = (e) => {
+        this.setState({
+            current: e.key,
+        });
+    }
     render() {
         return (
             <div>
